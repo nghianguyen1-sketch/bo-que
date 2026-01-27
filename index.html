@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Bóc quẻ</title>
+</head>
+<body>
+  <h1>BÓC QUẺ MAY MẮN</h1>
+
+  <input type="text" id="code" placeholder="Nhập mã trên thiệp">
+  <button onclick="checkCode()">Xem kết quả</button>
+
+  <p id="result"></p>
+
+  <script>
+    function checkCode() {
+      const code = document.getElementById("code").value;
+      document.getElementById("result").innerText =
+        "Bạn đã nhập mã: " + code;
+    }
+  </script>
+</body>
+</html>
