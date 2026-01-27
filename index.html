@@ -1,22 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Bóc quẻ</title>
+  <title>Bóc Quẻ May Mắn</title>
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont;
+      background: linear-gradient(135deg, #7A1616 0%, #7A1616 40%, #F5E9D4 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .card {
+      background: #FFFBF3;
+      padding: 32px;
+      border-radius: 16px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.35);
+    }
+
+    h1 {
+      margin-bottom: 16px;
+      color: #14532D;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      box-sizing: border-box;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #D97706, #F59E0B);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: 600;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>BÓC QUẺ MAY MẮN</h1>
+  <div class="card">
+    <h1>🔮 Bóc Quẻ May Mắn</h1>
 
-  <input type="text" id="code" placeholder="Nhập mã trên thiệp">
-  <button onclick="checkCode()">Xem kết quả</button>
+    <input type="text" id="code" placeholder="Nhập mã trên thiệp">
+    <button onclick="checkCode()">Xem kết quả</button>
 
-  <p id="result"></p>
+    <p id="error" style="color:#c33764; margin-top:12px;"></p>
+    <img id="resultImage" style="display:none; margin-top:20px; width:100%; border-radius:12px;" />
+  </div>
 
   <script>
     function checkCode() {
-      const code = document.getElementById("code").value;
-      document.getElementById("result").innerText =
-        "Bạn đã nhập mã: " + code;
+      const code = document.getElementById("code").value.trim().toUpperCase();
+      const errorEl = document.getElementById("error");
+      const imgEl = document.getElementById("resultImage");
+
+      errorEl.innerText = "";
+      imgEl.style.display = "none";
+
+      const codeMap = {
+        "ABC123": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+        "XYZ999": "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+        "MAYMAN": "https://images.unsplash.com/photo-1499084732479-de2c02d45fc4",
+        "MINHBEO": "https://github.com/nghianguyen1-sketch/bo-que/blob/main/MINHBEO.JPEG?raw=true"
+      };
+
+      if (!code) {
+        errorEl.innerText = "⚠️ Vui lòng nhập mã.";
+        return;
+      }
+
+      if (!codeMap[code]) {
+        errorEl.innerText = "❌ Mã không hợp lệ hoặc đã được sử dụng.";
+        return;
+      }
+
+      imgEl.src = codeMap[code];
+      imgEl.style.display = "block";
     }
   </script>
 </body>
